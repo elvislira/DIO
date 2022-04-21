@@ -1,3 +1,5 @@
+import { ContaBancaria } from './conta-bancaria.js';
+
 export class ContaUniversitaria extends ContaBancaria {
     constructor(agencia, numero, saldo) {
         super(agencia, numero, saldo);

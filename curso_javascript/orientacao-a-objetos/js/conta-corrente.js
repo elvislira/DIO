@@ -1,3 +1,5 @@
+import { ContaBancaria } from './conta-bancaria.js';
+
 export class ContaCorrente extends ContaBancaria {
     constructor(agencia, numero, saldo, cartaoCredito) {
         super(agencia, numero, saldo);

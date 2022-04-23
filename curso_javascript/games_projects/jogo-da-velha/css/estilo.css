@@ -30,6 +30,7 @@ body {
 }
 
 .quadrado {
+    background-color: #fff;
     border: 1px solid #242323;
     width: 20vh;
     height: 20vh;
@@ -40,17 +41,15 @@ body {
     border-radius: 15px;
     box-shadow: 5px 5px 5px #000000;
     cursor: pointer;
-}
-
-.quadrado:hover {
-    background-color: #fff;
+    font-size: 60px;
 }
 
 #placar {
     margin: 10px 0;
-    width: 35vw;
+    width: 30vw;
     display: flex;
     justify-content: space-between;
+    font-size: 18px;
 }
 
 #reiniciar {
@@ -68,4 +67,9 @@ body {
     font-size: 16px;
     width: 115px;
     height: 45px;
+}
+
+.quadrado-clicado {
+    background-color: #1d5c2d;
+    color: #ffffff;
 }

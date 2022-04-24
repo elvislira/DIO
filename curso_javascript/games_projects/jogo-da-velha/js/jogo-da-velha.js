@@ -34,9 +34,17 @@ function atualizaLegendaJogadorVencedor() {
         document.getElementById(resultado.quadrado3).classList.add('quadrado-vencedor');
     }
 
-    legendaJogador.innerHTML = jogadorAtual;
-    legendaVencedor.innerHTML = resultado.vencedor;
-    legendaResultado.innerHTML = resultado.vencedor;
+    if (deuVelha()) {
+        document.getElementById('placar').classList.add('placar-oculto');
+        document.getElementById('resultado').classList.remove('resultado-oculto');
+        document.querySelector('#resultado h4').innerHTML = '';
+        legendaResultado.innerHTML = "Velha";
+    } else {
+        legendaJogador.innerHTML = jogadorAtual;
+        legendaVencedor.innerHTML = resultado.vencedor;
+        legendaResultado.innerHTML = resultado.vencedor;
+    }
+
 }
 
 function atualizaMatriz(idQuadrado) {
@@ -117,7 +125,24 @@ function retornaResultado() {
     return objetoRetorno;
 }
 
+function deuVelha() {
+    for (let linha = 0; linha <= 2; linha++) {
+        for (let coluna = 0; coluna <= 2; coluna++) {
+            if (matrizJogo[linha][coluna] === '') {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 const quadrados = document.querySelectorAll('.quadrado');
+const botaoReiniciar = document.getElementById('reiniciar');
+
+botaoReiniciar.addEventListener('click', () => {
+    document.location.reload(true);
+});
 
 const jogadores = {
     jogador1: {

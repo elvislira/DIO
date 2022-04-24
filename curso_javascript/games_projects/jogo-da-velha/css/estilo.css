@@ -44,12 +44,16 @@ body {
     font-size: 60px;
 }
 
-#placar {
+.placar {
     margin: 10px 0;
     width: 30vw;
     display: flex;
     justify-content: space-between;
     font-size: 18px;
+}
+
+.placar-oculto {
+    display: none;
 }
 
 #reiniciar {
@@ -70,6 +74,43 @@ body {
 }
 
 .quadrado-clicado {
-    background-color: #1d5c2d;
+    background-color: #1d3e5c;
     color: #ffffff;
+}
+
+.vencedor {
+    background-color: #000;
+    color: #09ff00;
+    font-weight: bold;
+    width: 200px;
+    height: 40px;
+}
+
+.resultado {
+    margin: 5px 0;
+    text-align: center;
+    background-color: #000;
+    color: #09ff00;
+    width: 200px;
+    padding: 5px 0;
+    border-radius: 30px 10px;
+    box-shadow: 5px 5px 5px #1d5c2d;
+}
+
+.resultado h4 {
+    color: #fff;
+}
+
+.resultado p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.resultado-oculto {
+    display: none;
+}
+
+.quadrado-vencedor {
+    background-color: #ffff00;
+    color: #000;
 }

@@ -37,12 +37,27 @@ let shuffleOrder = () => {
     }
 }
 
+// Função para próximo nível do jogo
+let nextLevel = () => {
+    score++;
+    shuffleOrder();
+};
+
+// Função para game over
+let gameOver = () => {
+    alert(`Pontuação: ${score}\nVocê perdeu o jogo!\nClique em OK para iniciar um novo jogo!`);
+    order = [];
+    clickedOrder = [];
+
+    playGame();
+};
+
 // Checa se os botões clicados são os 
 // mesmos da ordem gerada no jogo
 let checkeOrder = () => {
     for (let i in clickedOrder) {
         if (clickedOrder[i] != order[i]) {
-            lose();
+            gameOver();
             break;
         }
     }
@@ -54,4 +69,28 @@ let checkeOrder = () => {
     }
 }
 
+// Função que retorna a cor
+let createColorElement = (color) => {
+    if (color == 0) {
+        return green;
+    } else if (color == 1) {
+        return red;
+    } else if (color == 2) {
+        return yellow;
+    } else if (color == 3) {
+        return blue;
+    }
+};
+
+// Função para o click do usuário
+let click = (color) => {
+    clickedOrder[clickedOrder.length] = color;
+    createColorElement(color).classList.add('selected');
+
+    setTimeout(() => {
+        elementColor(color).classList.remove('selected');
+    });
+
+    clickedOrder();
+};
 

@@ -10,7 +10,7 @@ let score = 0;
 const blue = document.querySelector('.azul');
 const red = document.querySelector('.vermelho');
 const green = document.querySelector('.verde');
-const yellow = document.querySelector('.yellow');
+const yellow = document.querySelector('.amarelo');
 
 // Acende a próxima cor
 let lightColor = (element, number) => {
@@ -32,7 +32,7 @@ let shuffleOrder = () => {
     clickedOrder = [];
 
     for (let i in order) {
-        let elementColor = createElement(order[i]);
+        let elementColor = createColorElement(order[i]);
         lightColor(elementColor, Number(i) + 1);
     }
 }
@@ -88,9 +88,23 @@ let click = (color) => {
     createColorElement(color).classList.add('selected');
 
     setTimeout(() => {
-        elementColor(color).classList.remove('selected');
-    });
+        createColorElement(color).classList.remove('selected');
 
-    clickedOrder();
+        checkeOrder();
+    }, 250);
 };
 
+let playGame = () => {
+    alert('Bem vindo ao Genius!\nIniciando um novo jogo!');
+
+    score = 0;
+    
+    nextLevel();
+};
+
+green.onclick = () => click(0);
+red.onclick = () => click(1);
+yellow.onclick = () => click(2);
+blue.onclick = () => click(3);
+
+playGame();

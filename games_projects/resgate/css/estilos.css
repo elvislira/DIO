@@ -48,7 +48,7 @@ body {
     background-image: url(../imgs/apache.png);
 }
 
-#inimigo1 {
+#helicoptero-inimigo {
     width: 256px;
     height: 66px;
     position: absolute;

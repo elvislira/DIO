@@ -2,7 +2,7 @@ function start() {
     $("#inicio").hide();
 
     $("#fundo-game").append("<div id='jogador' class='anima1'></div>");
-    $("#fundo-game").append("<div id='inimigo1' class='anima2'></div>");
+    $("#fundo-game").append("<div id='helicoptero-inimigo' class='anima2'></div>");
     $("#fundo-game").append("<div id='inimigo2'></div>");
     $("#fundo-game").append("<div id='amigo' class='anima3'></div>");
 
@@ -12,6 +12,8 @@ function start() {
         S: 83, //para baixo
         D: 68, //atirar
     };
+    var velocidadeInimigo = 5;
+    var posYInimigo = parseInt(Math.random() * 334);
 
     jogo.pressionou = [];
 
@@ -27,7 +29,8 @@ function start() {
 
     function loop() {
         moveFundo();
-        moveJogador();
+        moveHelicopteroAmigo();
+        moveHelicopteroInimigo();
     }
 
     function moveFundo() {
@@ -35,7 +38,7 @@ function start() {
         $("#fundo-game").css("background-position", esquerda - 1);
     }
 
-    function moveJogador() {
+    function moveHelicopteroAmigo() {
         if (jogo.pressionou[TECLA.W]) {
             var topo = parseInt($("#jogador").css("top"));
             if (topo > 0) {
@@ -52,6 +55,20 @@ function start() {
 
         if (jogo.pressionou[TECLA.D]) {
             //Disparo
+        }
+    }
+
+    function moveHelicopteroInimigo() {
+        let posicaoX = parseInt($("#helicoptero-inimigo").css("left"));
+        
+        $("#helicoptero-inimigo").css("left", posicaoX - velocidadeInimigo);
+        $("#helicoptero-inimigo").css("top", posYInimigo);
+
+        if (posicaoX <= 0) {
+            posYInimigo = parseInt(Math.random() * 334);
+
+            $("#helicoptero-inimigo").css("left", 694);
+            $("#helicoptero-inimigo").css("top", posYInimigo);
         }
     }
 };

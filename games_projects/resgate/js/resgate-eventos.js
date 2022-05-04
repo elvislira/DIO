@@ -1,1 +1,2 @@
-document.getElementById("inicio").addEventListener("click", start);
+$("#inicio").click(start);
+

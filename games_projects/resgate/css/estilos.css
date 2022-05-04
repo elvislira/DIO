@@ -57,7 +57,7 @@ body {
     background-image: url(../imgs/inimigo1.png);
 }
 
-#inimigo2 {
+#caminhao-inimigo {
     width: 165px;
     height: 70px;
     position: absolute;

@@ -1,2 +1,0 @@
-$("#inicio").click(start);
-

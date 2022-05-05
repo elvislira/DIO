@@ -1,3 +1,5 @@
+$("#inicio").click(start);
+
 function start() {
     $("#inicio").hide();
 
@@ -35,6 +37,7 @@ function start() {
         moveHelicopteroInimigo();
         moveCaminhaoInimigo();
         moveAmigo();
+        colisao();
     }
 
     function moveFundo() {
@@ -112,7 +115,7 @@ function start() {
             tempoDisparo = window.setInterval(executaDisparo, 30);
         }
     }
-    
+
     function executaDisparo() {
         posicaoX = parseInt($("#disparo").css("left"));
 
@@ -123,6 +126,41 @@ function start() {
             tempoDisparo = null;
             $("#disparo").remove();
             podeAtirar = true;
+        }
+    }
+
+    function colisao() {
+        let colisaoJogadorHelicInimigo = ($("#jogador").collision($("#helicoptero-inimigo")));
+        
+        if (colisaoJogadorHelicInimigo.length > 0) {
+            helicopteroInimigoX = parseInt($("#helicoptero-inimigo").css("left"));
+            helicopteroInimigoY = parseInt($("#helicoptero-inimigo").css("top"));
+
+            explosaoJogadorHelicInimigo(helicopteroInimigoX, helicopteroInimigoY);
+
+            posicaoY = parseInt(Math.random() * 334);
+
+            $("#helicoptero-inimigo").css("left", 694);
+            $("#helicoptero-inimigo").css("top", posicaoY);
+        }
+    }
+
+    function explosaoJogadorHelicInimigo(helicopteroInimigoX, helicopteroInimigoY) {
+        $("#fundo-game").append("<div id='explosaoJogadorHelicopteroInimigo'></div>");
+        $("#explosaoJogadorHelicopteroInimigo").css("background-image", "url(imgs/explosao.png)");
+
+        let div = $("#explosaoJogadorHelicopteroInimigo");
+
+        div.css("top", helicopteroInimigoY);
+        div.css("left", helicopteroInimigoX);
+        div.animate({width: 200, opacity: 0}, "slow");
+
+        let tempoExplosao = window.setInterval(removeExplosao, 1000);
+
+        function removeExplosao() {
+            div.remove();
+            window.clearInterval(tempoExplosao);
+            tempoExplosao = null;
         }
     }
 

@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+}
+
+.cabecalho, .rodape {
+    background-color: #1e3803;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 10vh;
+}
+
+.principal {
+    width: 100vw;
+    height: 80vh;
+}
+
+

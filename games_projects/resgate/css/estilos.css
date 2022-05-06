@@ -48,7 +48,7 @@ body {
     background-image: url(../imgs/apache.png);
 }
 
-#helicoptero-inimigo {
+#inimigo1 {
     width: 256px;
     height: 66px;
     position: absolute;
@@ -57,7 +57,7 @@ body {
     background-image: url(../imgs/inimigo1.png);
 }
 
-#caminhao-inimigo {
+#inimigo2 {
     width: 165px;
     height: 70px;
     position: absolute;
@@ -82,8 +82,14 @@ body {
     background-image: url(../imgs/disparo.png);
 }
 
-#explosaoJogadorHelicopteroInimigo {
+#explosao1 {
     width: 15px;
     height: 87px;
     position: absolute;
+}
+
+#explosao2 {
+	width:15px;
+	height:87px;
+	position:absolute;	
 }

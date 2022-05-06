@@ -4,8 +4,8 @@ function start() {
     $("#inicio").hide();
 
     $("#fundo-game").append("<div id='jogador' class='anima1'></div>");
-    $("#fundo-game").append("<div id='helicoptero-inimigo' class='anima2'></div>");
-    $("#fundo-game").append("<div id='caminhao-inimigo'></div>");
+    $("#fundo-game").append("<div id='inimigo1' class='anima2'></div>");
+    $("#fundo-game").append("<div id='inimigo2'></div>");
     $("#fundo-game").append("<div id='amigo' class='anima3'></div>");
 
     var jogo = {};
@@ -18,6 +18,7 @@ function start() {
     var posYInimigo = parseInt(Math.random() * 334);
     var podeAtirar = true;
     let tempoDisparo;
+    var gameOver = false;
 
     jogo.pressionou = [];
 
@@ -66,26 +67,26 @@ function start() {
     }
 
     function moveHelicopteroInimigo() {
-        let posicaoX = parseInt($("#helicoptero-inimigo").css("left"));
+        let posicaoX = parseInt($("#inimigo1").css("left"));
         
-        $("#helicoptero-inimigo").css("left", posicaoX - velocidadeInimigo);
-        $("#helicoptero-inimigo").css("top", posYInimigo);
+        $("#inimigo1").css("left", posicaoX - velocidadeInimigo);
+        $("#inimigo1").css("top", posYInimigo);
 
         if (posicaoX <= 0) {
             posYInimigo = parseInt(Math.random() * 334);
 
-            $("#helicoptero-inimigo").css("left", 694);
-            $("#helicoptero-inimigo").css("top", posYInimigo);
+            $("#inimigo1").css("left", 694);
+            $("#inimigo1").css("top", posYInimigo);
         }
     }
 
     function moveCaminhaoInimigo() {
-        let posicaoX = parseInt($("#caminhao-inimigo").css("left"));
+        let posicaoX = parseInt($("#inimigo2").css("left"));
 
-        $("#caminhao-inimigo").css("left", posicaoX - 3);
+        $("#inimigo2").css("left", posicaoX - 3);
 
         if (posicaoX <= 0) {
-            $("#caminhao-inimigo").css("left", 775);
+            $("#inimigo2").css("left", 775);
         }
     }
 
@@ -130,29 +131,44 @@ function start() {
     }
 
     function colisao() {
-        let colisaoJogadorHelicInimigo = ($("#jogador").collision($("#helicoptero-inimigo")));
+        let colisao1 = ($("#jogador").collision($("#inimigo1")));
+        let colisao2 = ($("#jogador").collision($("#inimigo2")));
+        let colisao3 = ($("#disparo").collision($("#inimigo1")));
+        let colisao4 = ($("#disparo").collision($("#inimigo2")));
+        let colisao5 = ($("#jogador").collision($("#amigo")));
+        let colisao6 = ($("#inimigo2").collision($("#amigo")));
         
-        if (colisaoJogadorHelicInimigo.length > 0) {
-            helicopteroInimigoX = parseInt($("#helicoptero-inimigo").css("left"));
-            helicopteroInimigoY = parseInt($("#helicoptero-inimigo").css("top"));
+        if (colisao1.length > 0) {
+            inimigo1X = parseInt($("#inimigo1").css("left"));
+            inimigo1Y = parseInt($("#inimigo1").css("top"));
 
-            explosaoJogadorHelicInimigo(helicopteroInimigoX, helicopteroInimigoY);
+            explosao1(inimigo1X, inimigo1Y);
 
             posicaoY = parseInt(Math.random() * 334);
 
-            $("#helicoptero-inimigo").css("left", 694);
-            $("#helicoptero-inimigo").css("top", posicaoY);
+            $("#inimigo1").css("left", 694);
+            $("#inimigo1").css("top", posicaoY);
+        }
+
+        if (colisao2.length > 0) {
+            inimigo2X = parseInt($("#inimigo2").css("left"));
+            inimigo2Y = parseInt($("#inimigo2").css("top"));
+            explosao2(inimigo2X,inimigo2Y);
+                    
+            $("#inimigo2").remove();
+                
+            reposicionaInimigo2();
         }
     }
 
-    function explosaoJogadorHelicInimigo(helicopteroInimigoX, helicopteroInimigoY) {
-        $("#fundo-game").append("<div id='explosaoJogadorHelicopteroInimigo'></div>");
-        $("#explosaoJogadorHelicopteroInimigo").css("background-image", "url(imgs/explosao.png)");
+    function explosao1(inimigo1X, inimigo1Y) {
+        $("#fundo-game").append("<div id='explosao1'></div>");
+        $("#explosao1").css("background-image", "url(imgs/explosao.png)");
 
-        let div = $("#explosaoJogadorHelicopteroInimigo");
+        let div = $("#explosao1");
 
-        div.css("top", helicopteroInimigoY);
-        div.css("left", helicopteroInimigoX);
+        div.css("top", inimigo1Y);
+        div.css("left", inimigo1X);
         div.animate({width: 200, opacity: 0}, "slow");
 
         let tempoExplosao = window.setInterval(removeExplosao, 1000);
@@ -164,5 +180,36 @@ function start() {
         }
     }
 
+    function reposicionaInimigo2() {
+        let tempoColisao4 = window.setInterval(reposiciona4, 5000);
+            
+        function reposiciona4() {
+            window.clearInterval(tempoColisao4);
+            tempoColisao4=null;
+                
+            if (gameOver == false) {
+                $("#fundo-game").append("<div id='inimigo2'></div");
+            }  
+        }	
+    }
+
+    function explosao2(inimigo2X,inimigo2Y) {
+        $("#fundo-game").append("<div id='explosao2'></div");
+        $("#explosao2").css("background-image", "url(imgs/explosao.png)");
+
+        let div2=$("#explosao2");
+
+        div2.css("top", inimigo2Y);
+        div2.css("left", inimigo2X);
+        div2.animate({width:200, opacity:0}, "slow");
+        
+        let tempoExplosao2=window.setInterval(removeExplosao2, 1000);
+
+        function removeExplosao2() {
+            div2.remove();
+            window.clearInterval(tempoExplosao2);
+            tempoExplosao2=null;
+        }
+    }
 };
 

@@ -9,3 +9,18 @@ body {
     font-family: sans-serif;
     background-color: #6495ed;
 }
+
+.game-area {
+    background-color: #000000;
+    background-image: url(../img/space.png);
+    width: 70vw;
+    height: 80vh;
+}
+
+.shooter {
+    position: relative;
+    width: 70px;
+    height: 60px;
+    left: 20px;
+    top: 250px
+}

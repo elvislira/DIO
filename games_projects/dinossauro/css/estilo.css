@@ -25,3 +25,11 @@
     position: absolute;
     bottom: 68px;
 }
+
+.cactus {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: 68px;
+    background-color: #ff0000;
+}

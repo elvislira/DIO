@@ -186,7 +186,7 @@ function start() {
 
         if (colisao3.length > 0) {
             somPerdido.play();
-            
+
             pontos += 100;
             velocidadeInimigo += 0.3;
             inimigo1X = parseInt($("#inimigo1").css("left"));
@@ -331,7 +331,35 @@ function start() {
 	
 		if (energiaAtual == 0) {
 			$("#energia").css("background-image", "url(imgs/energia0.png)");
+
+            fimJogo();
 		}
 	}
+
+    function fimJogo() {
+        gameOver = true;
+        musica.pause();
+        somGameover.play();
+        
+        window.clearInterval(jogo.timer);
+
+        jogo.timer = null;
+        
+        $("#jogador").remove();
+        $("#inimigo1").remove();
+        $("#inimigo2").remove();
+        $("#amigo").remove();
+        
+        $("#fundo-game").append("<div id='fim'></div>");
+        
+        $("#fim").html("<h1> Game Over </h1><p>Sua pontuação foi: " + pontos + "</p>" + "<div id='reinicia'><h3>Jogar Novamente</h3></div>");
+
+        $("#reinicia").click(reiniciaJogo);
+    }
 };
 
+function reiniciaJogo() {
+	somGameover.pause();
+	$("#fim").remove();
+	start();
+}

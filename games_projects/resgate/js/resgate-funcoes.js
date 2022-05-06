@@ -182,6 +182,11 @@ function start() {
             
             reposicionaInimigo2();  
         }
+
+        if (colisao5.length > 0) {	
+            reposicionaAmigo();
+            $("#amigo").remove();
+        }
     }
 
     function explosao1(inimigo1X, inimigo1Y) {
@@ -233,6 +238,19 @@ function start() {
             window.clearInterval(tempoExplosao2);
             tempoExplosao2=null;
         }
+    }
+
+    function reposicionaAmigo() {
+		let tempoAmigo = window.setInterval(reposiciona6, 6000);
+	
+		function reposiciona6() {
+			window.clearInterval(tempoAmigo);
+			tempoAmigo = null;
+			
+			if (gameOver == false) {
+			    $("#fundo-game").append("<div id='amigo' class='anima3'></div>");
+		    }
+	    }
     }
 };
 

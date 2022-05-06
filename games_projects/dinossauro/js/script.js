@@ -1,7 +1,7 @@
 const dino = document.querySelector('.dino');
 const fundoGame = document.querySelector('.fundo-game');
 
-let posicao = 68;
+let posicao = 0;
 let isJumping = false;
 
 document.addEventListener('keyup', pressionaTecla);
@@ -23,7 +23,7 @@ function jump() {
             clearInterval(upInterval);
 
             let downInterval = setInterval(() => {
-                if (posicao <= 68) {
+                if (posicao <= 0) {
                     clearInterval(downInterval);
                     isJumping = false;
                 } else {
@@ -51,7 +51,7 @@ function criarCactus() {
         if (posicaoCactus < -60) {
             clearInterval(leftInterval);
             fundoGame.removeChild(cactus);
-        } else if (posicaoCactus > 0 && posicaoCactus < 68 && posicao <= 68) {
+        } else if (posicaoCactus > 0 && posicaoCactus < 60 && posicao <= 0) {
             clearInterval(leftInterval);
             const principal = document.querySelector('.principal');
             principal.classList.add('painel-game-over');

@@ -13,8 +13,8 @@ body {
 .game-area {
     background-color: #000000;
     background-image: url(../img/space.png);
-    width: 70vw;
-    height: 80vh;
+    width: 700px;
+    height: 610px;
 }
 
 .shooter {
@@ -23,4 +23,10 @@ body {
     height: 60px;
     left: 20px;
     top: 250px
+}
+
+.laser {
+    position: relative;
+    width: 40px;
+    height: 30px;
 }

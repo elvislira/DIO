@@ -17,4 +17,11 @@
     height: 80vh;
 }
 
-
+.dino {
+    background-color: #000000;
+    width: 60px;
+    height: 60px;
+    color: #008000;
+    position: absolute;
+    bottom: 68px;
+}

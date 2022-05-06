@@ -172,6 +172,7 @@ function start() {
 
         if (colisao3.length > 0) {
             pontos += 100;
+            velocidadeInimigo += 0.3;
             inimigo1X = parseInt($("#inimigo1").css("left"));
             inimigo1Y = parseInt($("#inimigo1").css("top"));
                 
